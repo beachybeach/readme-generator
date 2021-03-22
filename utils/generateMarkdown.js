@@ -13,8 +13,6 @@ ${data.tech}
 \n\
 ${data.credits}
 \n\
-## Media
-\n\
 `;
 
 module.exports = generateMarkdown;

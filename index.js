@@ -51,7 +51,7 @@ const data = () => {
         if (credits) {
           return true;
         } else {
-          console.log('Who helped you build this projects?')
+          console.log('Who helped you build this project?')
           return false;
         }
       }
@@ -59,4 +59,24 @@ const data = () => {
   ]);
 }
 
-data();
+const writeToFile = (data, err) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile('./README.md', data, err => {
+      if (err) {
+        reject(err)
+        return;
+      }
+      resolve({
+        ok: true,
+        message: 'Your readme has been created!'
+      });
+    });
+  });
+}
+
+data()
+  .then(generateMarkdown)
+  .then(writeToFile)
+  .catch(err => {
+    if (err) throw err;
+  });
